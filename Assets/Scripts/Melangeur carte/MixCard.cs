@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using unityEngine.UI;
+using UnityEngine.UI;
 
 
 public class MixCard : MonoBehaviour
@@ -11,22 +11,24 @@ public class MixCard : MonoBehaviour
     {
         // Insert cards at random order into the shuffled list 
         var Mix = new List<Card>();
-        var rand = new Random();
+        var rand = new System.Random();
+        var Temp = new List<Card>();
 
         // As long as there are any cards left to insert randomly 
-        while (MixCard.Count != 0)
+        while (Mix.Count != 0)
         {
             // Get the index of the random card to insert 
-            var i = rand.Next(MixCard.Count);
+            var i = rand.Next(Mix.Count);
 
             // Insert it 
-            Mixed.Add(kaarten[i]);
+            Temp.Add(Mix[i]);
 
             // Remove from non-shuffled list 
-            MixCard.RemoveAt(i);
+            Mix.RemoveAt(i);
         }
 
         // Set the list of cards to the shuffled list 
-        MixCard = Mixed;
+        Mix = Temp;
     }
+
 }
