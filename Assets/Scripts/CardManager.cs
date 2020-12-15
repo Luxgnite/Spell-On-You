@@ -25,4 +25,27 @@ public class CardManager : MonoBehaviour
 
         Debug.Log(cardsPile[0].cardName);
     }
+
+    public void Mix()
+    {
+        // Insert cards at random order into the shuffled list 
+        System.Random rand = new System.Random();
+        List<Card> temp = new List<Card>();
+
+        // As long as there are any cards left to insert randomly 
+        while (cardsPile.Count != 0)
+        {
+            // Get the index of the random card to insert 
+            var i = rand.Next(cardsPile.Count);
+
+            // Insert it 
+            temp.Add(cardsPile[i]);
+
+            // Remove from non-shuffled list 
+            cardsPile.RemoveAt(i);
+        }
+
+        // Set the list of cards to the shuffled list 
+        cardsPile = temp;
+    }
 }
