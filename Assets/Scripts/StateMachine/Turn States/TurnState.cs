@@ -3,20 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnState : State
+public abstract class TurnState : State
 {
-    //protected TurnController owner;
+    protected TurnController owner;
+
+    public GameManager gameManager { get { return owner.gameManager;  } }
 
     protected virtual void Awake()
     {
-        //owner = GetComponent<TurnController>();
+        owner = GetComponent<TurnController>();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        Debug.Log("Charging " + this.GetType().Name);
     }
 
     protected override void AddListeners()
     {
         Debug.Log("Adding Listeners");
         //InputController.fireEvent += OnFire;
-
     }
 
     protected override void RemoveListeners()
@@ -26,7 +33,7 @@ public class TurnState : State
     }
 
     /*
-    protected virtual void OnEvent()
+    protected virtual void OnEvent(object sender, InfoEventArgs<Point> e)
     {
 
     }

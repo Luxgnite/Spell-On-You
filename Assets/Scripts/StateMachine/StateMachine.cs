@@ -55,7 +55,10 @@ public class StateMachine : MonoBehaviour
          * ou que le State Machine est déjà en transition.
          * Si l'une des deux conditions est vrai, alors on interrompt la transition. */
         if (_currentState == value || _inTransition)
+        {
+            Debug.Log("Interrupting transition.");
             return;
+        }
         //Sinon, on initie la transition
         Debug.Log("Transition...");
         //On indique que la State Machine est en cours de transition

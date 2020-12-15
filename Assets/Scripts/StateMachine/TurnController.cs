@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TurnController : StateMachine
 {
-
+    public GameManager gameManager;
     void Start()
     {
-        //ChangeState<InitTurnState>();
+        gameManager = GameManager.Instance;
+        ChangeState<InitTurnState>();
     }
 }
