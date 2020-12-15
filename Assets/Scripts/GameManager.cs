@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager Instance { get { return _instance;  } }
 
+    public List<Player> players;
+    public int nbPlayers;
+    public Player playerPrefab;
+
     void Awake()
     {
         //Singleton Pattern
@@ -21,6 +25,17 @@ public class GameManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
+        Init();
+    }
+
+    void Init()
+    {
+        for(int i = 0; i < nbPlayers; i++)
+        {
+            players.Add(GameObject.Instantiate(playerPrefab));
+            players[players.Count -1 ].name = "J" + players.Count;
+        }
     }
 
     // Update is called once per frame
