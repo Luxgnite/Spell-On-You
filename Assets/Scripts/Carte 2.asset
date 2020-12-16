@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Carte 2
   text: Je suis la carte 2.
+  illustration: {fileID: 21300000, guid: 2591dc8094566b248b2ab4212a05757c, type: 3}

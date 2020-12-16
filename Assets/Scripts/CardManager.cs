@@ -18,7 +18,7 @@ public class CardManager : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             Card temp = Instantiate(cardPrefab);
-            temp.transform.SetParent(GameObject.Find("Canvas").transform);
+            temp.transform.SetParent(GameObject.Find("Hand").transform);
             temp.Data = datas[0];
             Debug.Log(temp);
             cardsPile.Add(temp);

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance;  } }
 
     public List<Player> players;
-    public int nbPlayers;
+    public int nbPlayers = 4;
     public Player playerPrefab;
 
     void Awake()
