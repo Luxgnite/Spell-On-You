@@ -9,6 +9,7 @@ public class CardManager : MonoBehaviour
     public CardData[] datas;
     public Card cardPrefab;
 
+    public int handCardMax = 7;
 
     public void Start()
     {
@@ -47,5 +48,17 @@ public class CardManager : MonoBehaviour
 
         // Set the list of cards to the shuffled list 
         cardsPile = temp;
+    }
+
+    public void DrawCard(Player playerDestination, int nbCard = 1)
+    {
+    }
+
+    public void RefillHands()
+    {
+        foreach(Player player in GameManager.Instance.players)
+        {
+            DrawCard(player, player.cardsHand.Count - handCardMax);
+        }
     }
 }
