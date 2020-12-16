@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreatePostState : TurnState
+public class ChoosePictureCardState : TurnState
 {
-
     protected override void OnValidation()
     {
         Debug.Log("OnValidate in CreatePostState...");
@@ -14,6 +13,6 @@ public class CreatePostState : TurnState
     IEnumerator ValidatePost()
     {
         yield return null;
-        owner.ChangeState<ChoosePictureCardState>();
+        owner.ChangeState<EndPhaseOneState>();
     }
 }

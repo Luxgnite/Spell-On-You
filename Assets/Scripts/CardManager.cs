@@ -11,17 +11,19 @@ public class CardManager : MonoBehaviour
 
     public int handCardMax = 7;
 
-    public void Start()
+
+    public void Awake()
     {
         cardsPile = new List<Card>();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 60; i++)
         {
             Card temp = Instantiate(cardPrefab);
-            temp.transform.SetParent(GameObject.Find("Hand").transform);
+            temp.transform.SetParent(GameObject.Find("InvisibleCards").transform);
             temp.Data = datas[0];
             Debug.Log(temp);
             cardsPile.Add(temp);
+            temp.gameObject.SetActive(false);
         }
 
         Debug.Log(cardsPile[0].cardName);
@@ -53,19 +55,20 @@ public class CardManager : MonoBehaviour
     public void DrawCard(Player playerDestination, int nbCard = 1)
     {
         // fonction qui sert a piocher une carte
-
+        Debug.Log("Drawing " + nbCard + " for " + playerDestination.playerName + "...");
         for (int i = 0; i < nbCard; i++)
         {
-            playerDestination.cardsHand.Add(cardsPile[0]);
+            playerDestination.AddCardHand(cardsPile[0]);
             cardsPile.RemoveAt(0);
         }
     }
 
     public void RefillHands()
     {
+        Debug.Log("Refilling players hands...");
         foreach(Player player in GameManager.Instance.players)
         {
-            DrawCard(player, player.cardsHand.Count - handCardMax);
+            DrawCard(player, handCardMax - player.CardsHand.Count);
         }
     }
 }
