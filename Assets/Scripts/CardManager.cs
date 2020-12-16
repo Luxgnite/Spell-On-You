@@ -52,6 +52,13 @@ public class CardManager : MonoBehaviour
 
     public void DrawCard(Player playerDestination, int nbCard = 1)
     {
+        // fonction qui sert a piocher une carte
+
+        for (int i = 0; i < nbCard; i++)
+        {
+            playerDestination.cardsHand.Add(cardsPile[0]);
+            cardsPile.RemoveAt(0);
+        }
     }
 
     public void RefillHands()
