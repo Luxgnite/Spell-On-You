@@ -568,6 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsPile: []
+  refCards: []
   datas:
   - {fileID: 11400000, guid: 0d14414ac8dd265499fad0dada78cce9, type: 2}
   - {fileID: 11400000, guid: bd2ef4f87bc3ae54f875ab044d415046, type: 2}
@@ -589,6 +590,8 @@ MonoBehaviour:
   players: []
   nbPlayers: 4
   playerPrefab: {fileID: 3272105603734495087, guid: 9826f435fb21aa84189eb6dba812bb72,
+    type: 3}
+  postPrefab: {fileID: 2435186571854259141, guid: 3024f4226c22f674798990c0061d6ff3,
     type: 3}
 --- !u!4 &1162760422
 Transform:

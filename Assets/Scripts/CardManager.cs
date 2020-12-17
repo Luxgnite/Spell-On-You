@@ -5,6 +5,7 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     public List<Card> cardsPile;
+    public List<Card> refCards;
 
     public CardData[] datas;
     public Card cardPrefab;
@@ -25,7 +26,8 @@ public class CardManager : MonoBehaviour
             temp.Data = datas[Random.Range(0,datas.Length)];
             Debug.Log(temp);
             cardsPile.Add(temp);
-            temp.gameObject.SetActive(false);
+            refCards.Add(temp);
+            temp.SetVisibility(false);
         }
 
         Debug.Log(cardsPile[0].cardName);

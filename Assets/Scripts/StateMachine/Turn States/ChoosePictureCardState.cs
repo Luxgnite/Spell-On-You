@@ -15,17 +15,12 @@ public class ChoosePictureCardState : TurnState
     {
         if(cardSender.categorie == Categorie.Photo)
         {
-            //StartCoroutine(StartingPost());
-        }
-        else
-        {
-
+            gameManager.NewPost(cardSender);
+            StartCoroutine(StartingPost());
         }
     }
     IEnumerator StartingPost()
     {
-        GameManager.CardBroadcastSelectable();
-        GameManager.CardBroadcastUnselectable(Categorie.Photo);
         yield return null;
         owner.ChangeState<CreatePostState>();
     }

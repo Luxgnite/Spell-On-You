@@ -65,6 +65,19 @@ public class Card : MonoBehaviour
         this.gameObject.GetComponent<Image>().color = Color.gray;
     }
 
+    public void SetVisibility(bool visibility)
+    {
+        this.GetComponent<Image>().enabled = visibility;
+        foreach(Image image in this.GetComponentsInChildren<Image>())
+        {
+            image.enabled = visibility;
+        }
+        foreach (Text text in this.GetComponentsInChildren<Text>())
+        {
+            text.enabled = visibility;
+        }
+    }
+
     void GetDataCard()
     {
         this.cardName = data.cardName;
@@ -134,7 +147,7 @@ public class Card : MonoBehaviour
         if (isSelectable)
         {
             selected = !selected ? true : false;
-            rectTrans.sizeDelta = selected ? rectTrans.sizeDelta * 1.2f : new Vector2(standardSize.x, standardSize.y);
+            //rectTrans.sizeDelta = selected ? rectTrans.sizeDelta * 1.2f : new Vector2(standardSize.x, standardSize.y);
             CardManager.FireCardSelectedEvent(this);
         }
     }

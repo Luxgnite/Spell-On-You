@@ -26,11 +26,13 @@ public class GameManager : MonoBehaviour
     public static event GameEvent cardDescrSelectableEvent;
     public static event GameEvent cardHashtagSelectableEvent;
 
-
-
     public List<Player> players;
     public int nbPlayers = 4;
     public Player playerPrefab;
+    public PostViewer postPrefab;
+
+    public Post actualPost;
+    public List<Post> posts;
 
     private Player user;
     public Player User { get { return user; } }
@@ -67,6 +69,22 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void NewPost(Card firstCard)
+    {
+        actualPost = new Post(user);
+        PostViewer postView = GameObject.Instantiate(postPrefab);
+        postView.postLinked = actualPost;
+        postView.transform.SetParent(GameObject.Find("Canvas").transform);
+        actualPost.AddCard(firstCard);
+    }
+
+    public void ArchivePost(Post post)
+    {
+        if (post == actualPost)
+            actualPost = null;
+        posts.Add(post);
     }
 
     public static void FireValidateEvent()
