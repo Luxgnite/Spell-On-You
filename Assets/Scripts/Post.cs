@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Post
 {
     public delegate void PostEvent(Post postSender, Card cardChanged);
@@ -13,11 +14,11 @@ public class Post
     private Card photo;
     public Card Photo { get { return photo; } }
     private Card lieu;
-    public Card Lieu { get { return photo; } }
+    public Card Lieu { get { return Lieu; } }
     private Card hashtag;
-    public Card Hashtag { get { return photo; } }
+    public Card Hashtag { get { return Hashtag; } }
     private Card description;
-    public Card Description { get { return photo; } }
+    public Card Description { get { return Description; } }
 
     public Post(Player player)
     { 

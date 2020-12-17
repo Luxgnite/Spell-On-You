@@ -15,22 +15,30 @@ public class CardManager : MonoBehaviour
     public delegate void CardEvent(Card cardSender);
     public static event CardEvent cardSelectedEvent;
 
-    public void Awake()
+    public void Init()
     {
         cardsPile = new List<Card>();
 
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < datas.Length; i++)
         {
-            Card temp = Instantiate(cardPrefab);
-            temp.transform.SetParent(GameObject.Find("InvisibleCards").transform);
-            temp.Data = datas[Random.Range(0,datas.Length)];
+            Card temp = Instantiate(cardPrefab, GameObject.Find("InvisibleCards").transform);
+            temp.Data = datas[i];
             Debug.Log(temp);
             cardsPile.Add(temp);
             refCards.Add(temp);
             temp.SetVisibility(false);
+            if (datas[i].categorie != Categorie.Photo)
+            {
+                temp = Instantiate(cardPrefab, GameObject.Find("InvisibleCards").transform);
+                temp.Data = datas[i];
+                Debug.Log(temp);
+                cardsPile.Add(temp);
+                refCards.Add(temp);
+                temp.SetVisibility(false);
+            }
         }
 
-        Debug.Log(cardsPile[0].cardName);
+        Mix();
     }
 
     public void Mix()

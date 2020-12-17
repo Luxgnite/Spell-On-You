@@ -11,6 +11,19 @@ public class Player : MonoBehaviour
     public int followers = 0;
     public int gemmes = 0;
 
+    public int Followers
+    {
+        get
+        {
+            return followers;
+        }
+        set
+        {
+            followers = value;
+            GameManager.UserFollowersChanged();
+        }
+    }
+
     public int FollowerCoefficient
     {
         get
@@ -20,6 +33,11 @@ public class Player : MonoBehaviour
             else
                 return 0;
         }
+    }
+
+    public void ConvertGemmesIntoFollowers()
+    {
+        Followers = Followers + (gemmes / 2) * 100; 
     }
 
     private GameObject panelHand;

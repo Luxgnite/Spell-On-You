@@ -17,6 +17,25 @@ public class PostViewer : MonoBehaviour
     {
         Post.cardChangeEvent += OnChangeCard;
         Post.archivedEvent += OnArchivedPost;
+        this.gameObject.SetActive(false);
+    }
+
+    public Post PostLinked
+    {
+        set
+        {
+            postLinked = value;
+            Init();
+        }
+    }
+
+    void Init()
+    {
+        photo.sprite = postLinked.Photo != null ? postLinked.Photo.illustation : null;
+        description.text = postLinked.Description != null ? postLinked.Description.text : null;
+        hashtag.text = postLinked.Hashtag != null ? postLinked.Hashtag.text : null;
+        lieu.text = postLinked.Lieu != null ? postLinked.Lieu.text : null;
+        score.text = postLinked.ScoreCalculation().ToString();
     }
 
     void ChangeLieu(Card card)

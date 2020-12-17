@@ -31,18 +31,12 @@ public class Card : MonoBehaviour
         }
     }
 
-    Text UIcardTitle;
-    Text UIcardText;
-    Image UIcardIllu;
+    Image UIIcon;
 
     void Awake()
     {
-        UIcardTitle = this.transform.Find("Titre").GetComponent<Text>();
-        UIcardText = this.transform.Find("Text").GetComponent<Text>();
-        UIcardIllu = this.transform.Find("Illustration").GetComponent<Image>();
-
-        rectTrans = this.GetComponent<RectTransform>();
-        standardSize = new Vector2(rectTrans.sizeDelta.x, rectTrans.sizeDelta.y);
+        UIIcon = this.transform.Find("Reflection").GetComponent<Image>();
+        
     }
 
     public void ToggleSelectable()
@@ -56,18 +50,17 @@ public class Card : MonoBehaviour
     public void MakeSelectable()
     {
         isSelectable = true;
-        this.gameObject.GetComponent<Image>().color = Color.white;
+        //this.gameObject.GetComponent<Image>().color = Color.white;
     }
 
     public void MakeUnselectable()
     {
         isSelectable = false;
-        this.gameObject.GetComponent<Image>().color = Color.gray;
+        //this.gameObject.GetComponent<Image>().color = Color.gray;
     }
 
     public void SetVisibility(bool visibility)
     {
-        this.GetComponent<Image>().enabled = visibility;
         foreach(Image image in this.GetComponentsInChildren<Image>())
         {
             image.enabled = visibility;
@@ -87,9 +80,15 @@ public class Card : MonoBehaviour
         this.theme = data.theme;
         this.nbCoeur = data.nbCoeur;
 
-        UIcardTitle.text = this.cardName;
-        UIcardText.text = this.text;
-        UIcardIllu.sprite = this.illustation;
+        UIIcon.sprite = GameManager.Instance.iconsCategorie[(int) categorie];
+        UIIcon.color = GameManager.Instance.colorsThemes[(int) theme];
+
+        /*Transform gemme = this.transform.Find("Gemme");
+        for(int i = 1; i < nbCoeur; i++)
+        {
+            GameObject temp = GameObject.Instantiate(gemme.gameObject);
+            temp.transform.SetParent(gemme.parent);
+        }*/
 
         RemoveListeners();
         AddListeners();

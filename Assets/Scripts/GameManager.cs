@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CardManager))]
 public class GameManager : MonoBehaviour
@@ -25,11 +27,16 @@ public class GameManager : MonoBehaviour
     public static event GameEvent cardLieuSelectableEvent;
     public static event GameEvent cardDescrSelectableEvent;
     public static event GameEvent cardHashtagSelectableEvent;
+    public static event GameEvent userFollowersChangedEvent;
+    public static event GameEvent playerWin;
+
+    public List<Sprite> iconsCategorie = new List<Sprite>();
+    public List<Color> colorsThemes = new List<Color>();
 
     public List<Player> players;
     public int nbPlayers = 4;
     public Player playerPrefab;
-    public PostViewer postPrefab;
+    public PostViewer postView;
 
     public Post actualPost;
     public List<Post> posts;
@@ -63,6 +70,9 @@ public class GameManager : MonoBehaviour
         players[0].isUser = true;
         user = players[0];
         cardManager = this.gameObject.GetComponent<CardManager>();
+        userFollowersChangedEvent += OnFollowersChanged;
+        playerWin += OnPlayerWin;
+        cardManager.Init();
     }
 
     // Update is called once per frame
@@ -74,9 +84,8 @@ public class GameManager : MonoBehaviour
     public void NewPost(Card firstCard)
     {
         actualPost = new Post(user);
-        PostViewer postView = GameObject.Instantiate(postPrefab);
+        postView.gameObject.SetActive(true);
         postView.postLinked = actualPost;
-        postView.transform.SetParent(GameObject.Find("Canvas").transform);
         actualPost.AddCard(firstCard);
     }
 
@@ -161,5 +170,25 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public static void UserFollowersChanged()
+    {
+        userFollowersChangedEvent();
+    }
+
+    private void OnFollowersChanged()
+    {
+        GameObject.Find("NbAbonné").GetComponent<Text>().text = User.Followers.ToString();
+        GameObject.Find("NbGemme").GetComponent<Text>().text = "x" + User.FollowerCoefficient.ToString();
+    }
+
+    private void OnPlayerWin()
+    {
+    }
+
+    public static void PlayerWin()
+    {
+        playerWin();
     }
 }

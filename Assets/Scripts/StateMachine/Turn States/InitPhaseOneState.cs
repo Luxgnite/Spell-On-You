@@ -12,6 +12,7 @@ public class InitPhaseOneState : TurnState
 
     IEnumerator ChangeState()
     {
+
         yield return null;
         owner.ChangeState<ChoosePictureCardState>();
     }

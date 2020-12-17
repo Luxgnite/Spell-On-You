@@ -26,6 +26,6 @@ public class CreatePostState : TurnState
     IEnumerator ValidatePost()
     {
         yield return null;
-        owner.ChangeState<ChoosePictureCardState>();
+        owner.ChangeState<EndPhaseOneState>();
     }
 }
