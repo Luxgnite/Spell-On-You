@@ -24,6 +24,7 @@ public abstract class TurnState : State
     {
         Debug.Log("Adding Listeners");
         GameManager.validateEvent += OnValidation;
+        CardManager.cardSelectedEvent += OnSelectedCard;
         //InputController.fireEvent += OnFire;
     }
 
@@ -31,12 +32,18 @@ public abstract class TurnState : State
     {
         Debug.Log("Removing Listeners");
         GameManager.validateEvent -= OnValidation;
+        CardManager.cardSelectedEvent -= OnSelectedCard;
         //InputController.fireEvent -= OnFire;
     }
 
     protected virtual void OnValidation()
     {
         Debug.Log("OnValidate in " + this.GetType().Name);
+    }
+
+    protected virtual void OnSelectedCard(Card cardSender)
+    {
+
     }
 
     /*

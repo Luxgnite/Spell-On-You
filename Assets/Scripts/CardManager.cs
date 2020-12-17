@@ -11,6 +11,8 @@ public class CardManager : MonoBehaviour
 
     public int handCardMax = 7;
 
+    public delegate void CardEvent(Card cardSender);
+    public static event CardEvent cardSelectedEvent;
 
     public void Awake()
     {
@@ -20,7 +22,7 @@ public class CardManager : MonoBehaviour
         {
             Card temp = Instantiate(cardPrefab);
             temp.transform.SetParent(GameObject.Find("InvisibleCards").transform);
-            temp.Data = datas[0];
+            temp.Data = datas[Random.Range(0,datas.Length)];
             Debug.Log(temp);
             cardsPile.Add(temp);
             temp.gameObject.SetActive(false);
@@ -70,5 +72,11 @@ public class CardManager : MonoBehaviour
         {
             DrawCard(player, handCardMax - player.CardsHand.Count);
         }
+    }
+
+    public static void FireCardSelectedEvent(Card cardSender)
+    {
+        Debug.Log("Firing Validate Event");
+        cardSelectedEvent(cardSender);
     }
 }
