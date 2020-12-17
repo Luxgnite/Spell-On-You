@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 175dcd83809164f46b05215f2215ce78, type: 3}
-  m_Name: Carte 2
+  m_Name: Selfie Automoto
   m_EditorClassIdentifier: 
-  cardName: Carte 2
-  text: Je suis la carte 2.
-  illustration: {fileID: 21300000, guid: 2591dc8094566b248b2ab4212a05757c, type: 3}
-  categorie: 2
-  theme: 0
-  nbCoeur: 1
+  cardName: Selfie Automoto 1
+  text: Selfie Automoto 1
+  illustration: {fileID: 21300000, guid: dc6e73b20d0bbab4eb50cd70a4f8e628, type: 3}
+  categorie: 0
+  theme: 5
+  nbCoeur: 2
