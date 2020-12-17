@@ -13,6 +13,6 @@ public class CalcPointsState : TurnState
     IEnumerator ChangeState()
     {
         yield return null;
-        owner.ChangeState<EndPhaseOneState>();
+        owner.ChangeState<EndPhaseThreeState>();
     }
 }

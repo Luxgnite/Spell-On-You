@@ -23,13 +23,27 @@ public abstract class TurnState : State
     protected override void AddListeners()
     {
         Debug.Log("Adding Listeners");
+        GameManager.validateEvent += OnValidation;
+        CardManager.cardSelectedEvent += OnSelectedCard;
         //InputController.fireEvent += OnFire;
     }
 
     protected override void RemoveListeners()
     {
         Debug.Log("Removing Listeners");
+        GameManager.validateEvent -= OnValidation;
+        CardManager.cardSelectedEvent -= OnSelectedCard;
         //InputController.fireEvent -= OnFire;
+    }
+
+    protected virtual void OnValidation()
+    {
+        Debug.Log("OnValidate in " + this.GetType().Name);
+    }
+
+    protected virtual void OnSelectedCard(Card cardSender)
+    {
+
     }
 
     /*

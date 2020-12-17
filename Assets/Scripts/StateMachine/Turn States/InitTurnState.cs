@@ -13,6 +13,7 @@ public class InitTurnState : TurnState
 
     IEnumerator Init()
     {
+        gameManager.CardManager.RefillHands();
         yield return null;
         //Changer par le prochain State
         owner.ChangeState<InitPhaseOneState>();
